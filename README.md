@@ -114,4 +114,4 @@ Open `FRONTEND/index.html` using the VS Code Live Server extension.
 
 Developed as a Full-Stack Web Development Project.
 
-**GitHub:** [shikha2007-del](https://github.com/shikha2007-del)eb development project.
+**GitHub:** [shikha2007-del](https://github.com/shikha2007-del)

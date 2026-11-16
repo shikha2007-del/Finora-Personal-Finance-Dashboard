@@ -7,7 +7,7 @@ if(registerForm) {
         const userPassword = document.getElementById("password").value;
        
         try {
-            const respose = await fetch("http://localhost:8080/api/auth/register", {
+            const respose = await fetch("https://finora-lh13.onrender.com/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -43,7 +43,7 @@ if(loginForm) {
         const userPassword = document.getElementById("password").value;
 
         try {
-            const respose = await fetch("http://localhost:8080/api/auth/login", {
+            const respose = await fetch("https://finora-lh13.onrender.com/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/dashboard";
+const API_URL = "https://finora-lh13.onrender.com/api/dashboard";
 let expenseChart = null;
 
 const token = localStorage.getItem("token");
@@ -230,7 +230,7 @@ async function deleteTransaction(id) {
         return;
     }
     try {
-        const response = await fetch(`http://localhost:8080/api/transactions/${id}`, {
+        const response = await fetch(`https://finora-lh13.onrender.com/api/transactions/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -461,7 +461,7 @@ if(transactionForm){
         console.log(title,amount,type,category,date,description);
 
         try {
-            const url = editingTransactionId ? `http://localhost:8080/api/transactions/${editingTransactionId}` : "http://localhost:8080/api/transactions";
+            const url = editingTransactionId ? `https://finora-lh13.onrender.com/api/transactions/${editingTransactionId}` : "https://finora-lh13.onrender.com/api/transactions";
 
             const response = await fetch(url, {
                 method: editingTransactionId ? "PUT" : "POST",
@@ -504,7 +504,7 @@ async function saveBudget() {
             alert("Please enter a valid budget amount!");
             return;
         }
-        const response = await fetch("http://localhost:8080/api/budget", {
+        const response = await fetch("https://finora-lh13.onrender.com/api/budget", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -539,7 +539,7 @@ async function fetchBudget() {
         console.log("Fetching budget...");
         console.log("fetchBudget function started");
 
-        const response = await fetch(`http://localhost:8080/api/budget?month=${selectedMonth}&year=${currentYear}`, {
+        const response = await fetch(`https://finora-lh13.onrender.com/api/budget?month=${selectedMonth}&year=${currentYear}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -567,7 +567,7 @@ async function fetchBudget() {
 
 async function fetchBudgetTransactions() {
     try {
-        const response = await fetch("http://localhost:8080/api/transactions", {
+        const response = await fetch("https://finora-lh13.onrender.com/api/transactions", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -745,7 +745,7 @@ const financialInsights = document.getElementById("financialInsights");
 
 async function loadGoals() {
     try {
-        const response = await fetch(`http://localhost:8080/api/goals?month=${goalSelectedMonth}&year=${goalSelectedYear}`, {
+        const response = await fetch(`https://finora-lh13.onrender.com/api/goals?month=${goalSelectedMonth}&year=${goalSelectedYear}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -789,7 +789,7 @@ addGoalBtn.addEventListener("click", async () => {
         return;
     }
     try {
-        const response = await fetch("http://localhost:8080/api/goals", {
+        const response = await fetch("https://finora-lh13.onrender.com/api/goals", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -877,7 +877,7 @@ function displayGoals(goals) {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:8080/api/goals/${goal._id}`, {
+                const response = await fetch(`https://finora-lh13.onrender.com/api/goals/${goal._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -906,7 +906,7 @@ function displayGoals(goals) {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:8080/api/goals/${goal._id}`, {
+                const response = await fetch(`https://finora-lh13.onrender.com/api/goals/${goal._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -934,7 +934,7 @@ function displayGoals(goals) {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:8080/api/goals/${goal._id}`, {
+                const response = await fetch(`https://finora-lh13.onrender.com/api/goals/${goal._id}`, {
                     method: "DELETE",
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
