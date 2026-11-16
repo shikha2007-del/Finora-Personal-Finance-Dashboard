@@ -43,7 +43,7 @@ if(loginForm) {
         const userPassword = document.getElementById("password").value;
 
         try {
-            const respose = await fetch("https://finora-lh13.onrender.com/auth/login", {
+            const respose = await fetch("https://finora-lh13.onrender.com/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
