@@ -12,7 +12,7 @@ const goalRoutes = require("./routes/goalRoutes.js");
 
 dns.setServers(["8.8.8.8"]);
 app.use(cors({
-    origin: "http://127.0.0.1:5500"
+    origin: "https://finora-personal-finance-dashboard.netlify.app"
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
