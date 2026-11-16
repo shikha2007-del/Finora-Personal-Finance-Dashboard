@@ -1,8 +1,8 @@
 # Finora – Personal Finance Dashboard
 
-Finora is a full-stack personal finance management application that helps users track income, expenses, monthly budgets, and financial goals through an interactive dashboard.
+Finora is a full-stack personal finance management application designed to help users manage their finances efficiently. It provides an interactive dashboard to track income, expenses, monthly budgets, and financial goals.
 
-## Features
+## ✨ Features
 
 - User Registration and Login
 - JWT Authentication
@@ -18,49 +18,67 @@ Finora is a full-stack personal finance management application that helps users 
 - Light and Dark Themes
 - Responsive Design
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-### Frontend
+**Frontend**
 - HTML
 - Tailwind CSS
 - JavaScript
 - Chart.js
 
-### Backend
+**Backend**
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - JWT Authentication
 
-## Project Structure
+## 📁 Project Structure
 
-Finora/
+```text
+Finora-Personal-Finance-Dashboard/
+│
 ├── BACKEND/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── package.json
+│   └── server.js
+│
 ├── FRONTEND/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── auth.js
+│   ├── script.js
+│   ├── style.css
+│   └── output.css
+│
 ├── .gitignore
 └── README.md
-
-
-## Installation and Setup
-
-### 1. Clone the repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd Finora
 ```
 
-### 2. Install backend dependencies
+## 🚀 Installation and Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/shikha2007-del/Finora-Personal-Finance-Dashboard.git
+cd Finora-Personal-Finance-Dashboard
+```
+
+### 2. Install Backend Dependencies
 
 ```bash
 cd BACKEND
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Configure Environment Variables
 
-Create a `.env` file inside BACKEND.
+Create a `.env` file inside the BACKEND folder.
 
 ```env
 MONGO_URL=your_mongodb_connection_string
@@ -68,28 +86,32 @@ PORT=8080
 JWT_SECRET=your_secret_key
 ```
 
-### 4. Start the backend
+Use your own MongoDB connection string and a secure JWT secret. Never upload your `.env` file to GitHub.
+
+### 4. Start the Backend
 
 ```bash
 npm start
 ```
 
-### 5. Run the frontend
+### 5. Run the Frontend
 
-Open FRONTEND/index.html using VS Code Live Server.
+Open `FRONTEND/index.html` using the VS Code Live Server extension.
 
-## Security
+## 🔐 Security
 
 - Environment variables are used for sensitive configuration.
-- Passwords are hashed.
+- Passwords are hashed before storage.
 - Protected API routes use JWT authentication.
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- Financial reports and insights
-- Advanced spending analysis
+- Advanced financial reports and insights
+- Enhanced spending analysis
 - Additional dashboard visualizations
 
-## Author
+## 👩‍💻 Author
 
-Developed as a full-stack web development project.
+Developed as a Full-Stack Web Development Project.
+
+**GitHub:** [shikha2007-del](https://github.com/shikha2007-del)eb development project.
