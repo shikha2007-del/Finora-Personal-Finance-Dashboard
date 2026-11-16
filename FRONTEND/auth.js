@@ -24,7 +24,7 @@ if(registerForm) {
                 throw new Error(data.message || "Registration failed");
             }
             alert("Registration successfully");
-            window.location.href = "login.html";
+            window.location.href = "index.html";
 
         } catch(error) {
             console.log("Registration Error:", error.message);
