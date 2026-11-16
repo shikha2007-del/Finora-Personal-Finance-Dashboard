@@ -23,6 +23,9 @@ if(registerForm) {
             if(!respose.ok) {
                 throw new Error(data.message || "Registration failed");
             }
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+
             alert("Registration successfully");
             window.location.href = "index.html";
 

@@ -26,8 +26,15 @@ const userRegistration = async (req,res) => {
             email,
             password: hashedPassword
         })
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        );
+
         return res.status(201).json({
             message: "User registered successfully!",
+            token,
             user: {
                 id: user._id,
                 email: user.email
