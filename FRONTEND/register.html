@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finora | Register</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="w-full max-w-md p-8 shadow-lg rounded-xl">
+            <h1 class="text-3xl font-bold text-center">Create Account</h1>
+            <p class="text-center mt-2">Start managing your finances with Finora</p>
+            <form id="registerForm" class="mt-6">
+                <label>Name</label>
+                <input type="text" id="name" required class="w-full border p-3 rounded mb-4">
+                <label>Email</label>
+                <input type="email" id="email" required class="w-full border p-3 rounded mb-4">
+                <label>Password</label>
+                <input type="password" id="password" required class="w-full border p-3 rounded mb-4">
+                <button type="submit" class="w-full bg-orange-500 text-white p-3 rounded">Register</button>
+            </form>
+            <p class="text-center mt-4">Already have an account?
+                <a href="login.html" class="text-orange-500">Login</a>
+            </p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

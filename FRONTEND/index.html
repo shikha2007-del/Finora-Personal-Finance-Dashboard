@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finora | Finance Dashboard</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="min-h-screen bg-grey-100 flex">
+        <button id="menuToggle" class="md:hidden fixed top-4 left-4 z-60 bg-orange-500 text-white p-3 rounded-lg shadow-md">☰</button>
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black/40 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+        
+        <!---- Sidebar ---->
+
+        <aside id="sidebar" class="w-64 h-screen bg-orange-500 text-white p-6 flex flex-col shrink-0 fixed top-0 left-0 right-auto z-50 transition-transform duration-300 overflow-y-auto">
+            <div class="mb-12">
+                <h1 class="text-3xl font-extrabold tracking-wide">Finora<span class="text-orange-200">.</span></h1>
+                <p class="text-sm text-orange-100 mt-1">Personal Finance</p>
+            </div>
+            <nav class="flex-1 space-y-3">
+                <a href="#" class="flex items-center gap-3 bg-white text-orange-600 font-semibold px-4 py-3 rounded-xl shadow-sm"><span>🏠</span>Dashboard</a>
+                <a href="#transactions" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-600 transition-colors"><span>💳</span>Transactions</a>
+                <a href="#analytics" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-600 transition-colors"><span>📊</span>Analytics</a>
+                <a href="#settings" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-orange-600 transition-colors"><span>⚙️</span>Settings</a>
+            </nav>
+            <div class="mt-auto pt-6">
+                <button id="logoutBtn" class="w-full flex items-center justify-center gap-3 bg-white text-orange-600 font-bold py-3 px-4 rounded-xl hover:bg-orange-50 transition-colors shadow-sm"><span>↪</span>Logout</button>
+            </div>
+        </aside>
+
+        <!--- Main Content -->
+
+        <main class="flex-1 p-4 sm:p-6 min-w-0 ml-0 lg:ml-64">
+
+            <!---- Header ---->
+
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-grey-800">Dashboard</h2>
+                <p class="text-grey-500 mt-2">Welcome back! Here's your financial overview</p>
+            </header>
+
+            <!----- Summary Cards ---->
+
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="bg-linear-to-br from-orange-50 to-white border border-orange-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 font-medium">Total Balance</p>
+                        <span class="bg-orange-100 text-orange-600 p-3 rounded-xl">💰</span>
+                    </div>
+                    <h3 id="balance" class="text-2xl font-bold text-gray-800 mt-4">₹0</h3>
+                    <p class="text-sm text-gray-400 mt-2">Your available balance</p>
+                </div>
+                <div class="bg-linear-to-br from-green-50 to-white border border-green-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-center">
+                        <p class="text-grey-500 font-medium">Total Income</p>
+                        <span class="bg-green-100 text-green-600 p-3 rounded-xl">📈</span>
+                    </div>
+                    <h3 id="income" class="text-2xl font-bold text-green-600 mt-4">₹0</h3>
+                    <p class="text-sm text-gray-400 mt-2">Your total earnings</p>
+                </div>
+                <div class="bg-linear-to-br from-red-50 to-white border border-red-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 font-medium">Total Expense</p>
+                        <span class="bg-red-100 text-red-600 p-3 rounded-xl">💸</span>
+                    </div>
+                    <h3 id="expense" class="text-2xl font-bold text-red-500 mt-4">₹0</h3>
+                    <p class="text-sm text-gray-400 mt-2">Your total spending</p>
+                </div>
+            </section>
+
+            <section id="section" class="bg-white p-6 sm:p-6 rounded-2xl shadow-md border border-gray-100 mt-8 sm:mt-8">
+                <div class="mb-5 sm:mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Add New Transaction</h2>
+                    <p class="text-sm text-gray-500 mt-1">Record your income and expenses</p>
+                </div>
+                <form id="transactionForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 min-w-0">
+                    <div class="min-w-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Transaction Title</label>
+                        <input type="text" id="title" placeholder="Enter transaction title" required class="border border-gray-200 p-3 rounded-lg w-full min-w-0 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="min-w-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Amount (₹)</label>
+                        <input type="number" id="amount" placeholder="Enter amount" min="0.01" step="0.01" required class="border border-gray-200 p-3 rounded-lg w-full min-w-0 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="min-w-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Transaction Type</label>
+                        <select id="type" required class="border border-gray-200 p-3 rounded-lg w-full min-w-0 bg-white focus:outline-none focus:ring-2 focus:ring-orange-300">
+                            <option value="">Select Type</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div min-w-0>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                        <select id="category" required class="border border-gray-200 p-3 rounded-lg w-full min-w-0 bg-white focus:outline-none focus:ring-2 focus:ring-orange-300">
+                            <option value="">Select Category</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Education">Education</option>
+                            <option value="Bills">Bills</option>
+                        </select>
+                    </div>
+                    <div class="min-w-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Transaction Date</label>
+                        <input type="date" id="date" required class="border border-gray-200 p-3 rounded-lg w-full min-w-0 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="min-w-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                        <textarea id="description" placeholder="Description (optional)" class="border border-gray-200 p-3 rounded-lg w-full min-w-0 min-h-0 resize-y focus:outline-none focus:ring-2 focus:ring-orange-300"></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" id="addTransactionBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg w-full md:w-auto transition">Add Transaction</button>
+                    </div>
+                </form>
+            </section>
+
+            <!----- Add Monthly Budget Section Here ------>
+
+            <section id="section" class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 mt-6">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-6 sm:mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">Monthly Budget</h2>
+                        <p class="text-sm text-gray-500 mt-1">Manage and track your monthly spending</p>
+                    </div>
+                    <span class="bg-orange-100 text-orange-600 px-3 py-2 rounded-full text-sm font-semibold w-fit">Budget Tracker</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+                    <div>
+                        <label for="budgetMonth" class="block mb-2 text-sm font-semibold text-gray-700">Select Month</label>
+                        <select id="budgetMonth" class="border border-gray-200 p-3 rounded-lg w-full bg-white focus:ring-2 focus:ring-orange-300 outline-none"></select>
+                    </div>
+                    <div>
+                        <label for="budgetYear" class="block mb-2 text-sm font-semibold text-gray-700">Select Year</label>
+                        <select id="budgetYear" class="border border-gray-200 p-3 rounded-lg w-full bg-white focus:ring-2 focus:ring-orange-300 outline-none"></select>
+                    </div>
+                </div>
+                <div class="bg-orange-50 border border-orange-100 p-4 rounded-xl mb-6">
+                    <label for="budgetAmount" class="block text-sm font-semibold text-gray-700 mb-2">Set Your Monthly Budget</label>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="number" id="budgetAmount" placeholder="Enter monthly budget" min="1" class="border border-gray-200 p-3 rounded-lg w-full min-w-0 outline-none focus:ring-2 focus:ring-orange-300">
+                        <button id="saveBudgetBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors w-full sm:w-auto whitespace-nowrap">Set Budget</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl min-w-0 budget-summary-card">
+                        <p class="text-sm text-gray-500">Monthly Budget</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-600 mt-2 wrap-break-words">₹<span id="monthlyBudget">0</span></h3>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 p-4 rounded-xl min-w-0 budget-summary-card">
+                        <p class="text-sm text-gray-500">Monthly Spending</p>
+                        <h3 class="text-xl font-bold text-red-500 mt-2 wrap-break-words">₹<span id="monthlySpending">0</span></h3>
+                    </div>
+                    <div class="bg-green-50 border border-green-100 p-4 rounded-xl min-w-0 budget-summary-card">
+                        <p class="text-sm text-gray-500">Remaining Budget</p>
+                        <h3 class="text-xl font-bold text-green-600 mt-2 wrap-break-words">₹<span id="remainingBudget">0</span></h3>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="font-semibold text-gray-700">Budget Usage</p>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div id="budgetProgress" style="width: 0%; height: 12px; background-color: #2563eb; border-radius: 9999px; transition: width 0.5s;"></div>
+                    </div>
+                    <p id="budgetMessage" class="mt-3 text-sm text-gray-600"></p>
+                </div>
+                <button id="downloadPDFBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-3 rounded-lg mt-4 w-full sm:w-auto transition-colors">📄 Download Monthly Report PDF</button>
+            </section>
+            
+            <!----- Recent Transactions ---->
+
+            <section id="section" class="bg-white p-6 sm:p-6 rounded-2xl shadow-md border border-gray-100 mt-8 sm:mt-8">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 sm:mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Recent Transactions</h3>
+                        <p class="text-sm text-gray-500 mt-1">View and manage your income and expenses</p>
+                    </div>
+                    <button id="exportCSVBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-3 rounded-lg transition-colors w-full sm:w-auto">📥 Export CSV</button>
+                </div>
+                <div class="mb-5">
+                    <input type="text" id="searchTransaction" placeholder="🔍 Search transactions..." class="border border-gray-200 p-3 rounded-lg w-full min-w-0 outline-none focus:ring-2 focus:ring-orange-300">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label for="filterType" class="block text-sm font-semibold text-gray-700 mb-2">Transaction Type</label>
+                        <select id="filterType"
+                            class="border border-gray-200 p-3 rounded-lg w-full bg-white outline-none focus:ring-2 focus:ring-orange-300">
+                            <option value="all">All Transactions</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="filterCategory" class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                        <select id="filterCategory" class="border border-gray-200 p-3 rounded-lg w-full outline-none focus:ring-2 focus:ring-orange-300">
+                            <option value="all">All Categories</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Education">Education</option>
+                            <option value="Bills">Bills</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="sortTransactions" class="block text-sm font-semibold text-gray-700 mb-2">Sort By</label>
+                        <select id="sortTransactions" class="border border-gray-200 p-3 rounded-lg w-full bg-white outline-none focus:ring-2 focus:ring-orange-300">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="lowToHigh">Amount: Low to High</option>
+                            <option value="highToLow">Amount: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-full overflow-x-auto border border-gray-100 rounded-xl">
+                    <table class="w-full min-w-175 text-left">
+                        <thead class="bg-orange-50">
+                            <tr class="border-b border-gray-200 text-gray-600 text-sm">
+                                <th class="p-4 sm:p-4 font-semibold">Title</th>
+                                <th class="p-4 sm:p-4 font-semibold">Category</th>
+                                <th class="p-4 sm:p-4 font-semibold">Date</th>
+                                <th class="p-4 sm:p-4 font-semibold">Amount</th>
+                                <th class="p-4 sm:p-4 font-semibold">Type</th>
+                                <th class="p-4 sm:p-4 font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions" class="divide-y divide-gray-100">
+                            <tr>
+                                <td colspan="6" class="p-5 text-center text-gray-500">Loading transactions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Expense Analytics + Monthly Income vs Expense -->
+
+            <section id="section" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-6 mt-6 sm:mt-8">
+                <div class="bg-white p-6 sm:p-6 rounded-2xl shadow-md border border-gray-100 min-w-0">
+                    <h3 class="text-lg m:text-xl font-bold text-gray-800 mb-5 sm:mb-5">Expense Analytics</h3>
+                    <div class="relative w-full" style="height: 260px; max-height: 300px;">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                    <div id="analytics" class="mt-5 min-w-0">
+                        <p class="text-gray-400">Loading analytics...</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-md border border-gray-100 min-w-0">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-5">Monthly Income vs Expense</h3>
+                    <div class="relative w-full" style="height: 260px; max-height: 300px;">
+                        <canvas id="monthlyComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!----- Goal ------>
+
+            <section id="section" class="bg-white p-4 sm:p-6 rounded-2xl shadow-md border border-gray-100 mt-6 sm:mt-8 min-w-0">
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
+                    <div class="min-w-0">
+                        <span class="text-sm font-semibold text-orange-500">SAVINGS TRACKER</span>
+                       <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mt-1">Financial Goals</h2>
+                        <p class="text-sm text-gray-500 mt-1">Plan your savings and track your monthly targets.</p>
+                    </div>
+                     <div class="grid grid-cols-2 gap-2 sm:gap-3 w-full lg:w-auto">
+                        <select id="goalMonthSelect" class="min-w-0 w-full border border-gray-200 p-2.5 rounded-lg bg-gray-50 focus:ring-2 focus:ring-orange-300 outline-none">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                         <select id="goalYearSelect" class="min-w-0 w-full border border-gray-200 p-2.5 rounded-lg bg-gray-50 focus:ring-2 focus:ring-orange-300 outline-none">
+                            <option value="2025">2025</option>
+                            <option value="2026" selected>2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 mb-6">
+                    <div class=" goal-summary-card bg-linear-to-br from-blue-50 to-white border border-blue-100 p-4 sm:p-5 rounded-2xl min-w-0">
+                        <p class="text-sm font-medium text-gray-500">Total Goals</p>
+                        <h3 id="totalGoals" class="text-2xl sm:text-3xl font-bold text-blue-600 mt-2">0</h3>
+                    </div>
+                     <div class="goal-summary-card bg-linear-to-br from-green-50 to-white border border-green-100 p-4 sm:p-5 rounded-2xl min-w-0">
+                        <p class="text-sm font-medium text-gray-500">Completed Goals</p>
+                        <h3 id="completedGoals" class="text-2xl sm:text-3xl font-bold text-green-600 mt-2">0</h3>
+                    </div>
+                    <div class="goal-summary-card bg-linear-to-br from-orange-50 to-white border border-orange-100 p-4 sm:p-5 rounded-2xl min-w-0">
+                        <p class="text-sm font-medium text-gray-500">In Progress</p>
+                        <h3 id="inProgressGoals" class="text-2xl sm:text-3xl font-bold text-orange-500 mt-2">0</h3>
+                    </div>
+                    <div class="goal-summary-card bg-linear-to-br from-purple-50 to-white border border-purple-100 p-4 sm:p-5 rounded-2xl min-w-0">
+                        <p class="text-sm font-medium text-gray-500">Total Savings</p>
+                        <h3 id="totalGoalSavings" class="text-2xl sm:text-3xl font-bold text-purple-600 mt-2 wrap-break-words">₹0</h3>
+                    </div>
+                </div>
+                <div class="bg-gray-50 border border-gray-100 p-4 sm:p-5 rounded-2xl mb-6">
+                    <div class="flex justify-between items-center gap-3 mb-3">
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-gray-800">Overall Goal Progress</h3>
+                            <p class="text-sm text-gray-500">Your combined savings progress</p>
+                        </div>
+                        <span id="overallGoalPercentage" class="text-lg font-bold text-green-600 shrink-0">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                        <div id="overallGoalProgressBar" class="bg-green-500 h-4 rounded-full w-0 transition-all duration-500"></div>
+                    </div>
+                    <p id="overallGoalProgressText" class="text-sm text-gray-600 mt-3 wrap-break-word">₹0 saved out of ₹0</p>
+                </div>
+                 <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 mb-6">
+                    <div class="bg-white border border-gray-200 p-4 sm:p-5 rounded-2xl shadow-sm min-w-0">
+                        <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-4">Goals Progress Analysis</h3>
+                         <div class="w-full relative" style="height: 260px; max-height: 300px;">
+                            <canvas id="goalsProgressChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-100 p-4 sm:p-5 rounded-2xl min-w-0">
+                        <h3 class="text-base sm:text-lg font-bold text-purple-700 mb-2">Financial Insights</h3>
+                        <p class="text-sm text-purple-600 mb-4">An overview of your savings performance.</p>
+                        <div id="financialInsights" class="space-y-3 min-w-0">
+                            <p class="text-gray-600">Your financial insights will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-orange-50 border border-orange-100 p-4 sm:p-5 rounded-2xl mb-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">Create a New Goal</h3>
+                    <p class="text-sm text-gray-500 mb-4">Set a savings target for the selected month.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+                        <input type="text" id="goalName" placeholder="Goal name (e.g. Buy Laptop)" class="min-w-0 w-full border border-gray-200 bg-white p-3 rounded-xl focus:ring-2 focus:ring-orange-300 outline-none">
+                        <input type="number" id="targetAmount" placeholder="Target amount (₹)" min="1" class="min-w-0 w-full border border-gray-200 bg-white p-3 rounded-xl focus:ring-2 focus:ring-orange-300 outline-none">
+                        <button id="addGoalBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold p-3 rounded-xl transition-colors">Add Goal</button>
+                    </div>
+                </div>
+                <div class="min-w-0">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Your Savings Goals</h3>
+                    <div id="goalsContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-4 min-w-0">
+                        <p class="text-gray-500 col-span-full text-center">No financial goals added yet.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="settings" class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 mt-8">
+                <h2 class="text-2xl font-bold text-gray-800">⚙️ Settings</h2>
+                <p class="text-gray-500 mt-2 mb-6">Customize your dashboard appearance.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button id="lightThemeBtn" class="border-2 border-orange-500 rounded-xl p-5 text-left hover:bg-orange-50 transition-colors"><span class="text-3xl">☀️</span><h4 class="font-bold text-gray-800 mt-3">Light Theme</h4><p class="text-sm text-gray-500 mt-1">Use a bright dashboard.</p></button>
+                    <button id="darkThemeBtn" class="border-2 border-gray-400 rounded-xl p-5 text-left hover:bg-gray-100 transition-colors"><span class="text-3xl">🌙</span><h4 class="font-bold text-gray-800 mt-3">Dark Theme</h4><p class="text-sm text-gray-500 mt-1">Use a dark dashboard.</p></button>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
